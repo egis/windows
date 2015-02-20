@@ -26,10 +26,7 @@
                 </OSImage>
             </ImageInstall>
             <UserData>
-                <ProductKey>
-                    <Key>D2N9P-3P6X9-2R39C-7RTCD-MDVJX</Key>
-                    <WillShowUI>OnError</WillShowUI>
-                </ProductKey>
+                
                 <AcceptEula>true</AcceptEula>
             </UserData>
             <DiskConfiguration>
@@ -64,25 +61,25 @@
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">
                         <Password>
-                            <Value>vagrant</Value>
+                            <Value>password</Value>
                             <PlainText>true</PlainText>
                         </Password>
                         <Description>Vagrant User</Description>
                         <DisplayName>vagrant</DisplayName>
                         <Group>Administrators</Group>
-                        <Name>vagrant</Name>
+                        <Name>Administrator</Name>
                     </LocalAccount>
                 </LocalAccounts>
                 <AdministratorPassword>
-                    <Value>vagrant</Value>
+                    <Value>password</Value>
                     <PlainText>true</PlainText>
                 </AdministratorPassword>
             </UserAccounts>
             <AutoLogon>
                 <Enabled>true</Enabled>
-                <Username>vagrant</Username>
+                <Username>Administrator</Username>
                 <Password>
-                    <Value>vagrant</Value>
+                    <Value>password</Value>
                     <PlainText>true</PlainText>
                 </Password>
             </AutoLogon>

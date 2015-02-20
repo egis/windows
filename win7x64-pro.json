@@ -124,19 +124,13 @@
         "script/clean.bat",
         "script/ultradefrag.bat",
         "script/uninstall-7zip.bat",
-        "script/sdelete.bat"
+        "script/sdelete.bat",
+        "script/reboot.cmd"
       ]
     },
     {
       "type": "shell",
       "inline": ["rm -f /tmp/script.bat"]
     }
-  ],
-  "post-processors": [{
-    "type": "vagrant",
-    "keep_input_artifact": false,
-    "compression_level": 1,
-    "vagrantfile_template": "tpl/vagrantfile-win7x64-pro.tpl",
-    "output": "box/{{.Provider}}/win7x64-pro-{{user `cm`}}{{user `cm_version`}}-{{user `version`}}.box"
-  }]
+  ]
 }
