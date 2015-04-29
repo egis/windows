@@ -1,24 +1,28 @@
 {
   "variables": {
-    "version": "0.1.0",
-    "cm": "chef",
-    "cm_version": "",
+   "remote_host": "{{env `remote_host`}}",
+    "remote_username": "root",
+    "remote_password": "{{env `remote_password`}}",
+    "vm_name": "{{env `VM_NAME`}}",
+    "datastore": "{{ env `datastore` }}",
+    "output_directory": "{{env `VM_NAME`}}",
     "iso_url": "/distributions/iso/Win7.iso",
     "iso_checksum_type": "md5",
     "iso_checksum": "528845853389df15d0fa36e5d3994c55",
-    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c 'Packer Shutdown'",
+    "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c `Packer Shutdown`",
     "update": false
   },
   "builders": [
     {
-       "remote_type": "esx5",
-      "remote_host": "{{env 'ESX_HOST'}}",
+      "remote_type": "esx5",
+      "remote_host": "{{user `remote_host`}}",
       "remote_username": "root",
-      "remote_password": "{{env 'ESX_PASS'}}",
-      "remote_cache_datastore": "datastore1",
+      "remote_password": "{{user `remote_password`}}",
+      "remote_cache_datastore": "{{ user `datastore`}}",
       "remote_cache_directory": "packer-cache",
-      "output_directory": "{{env 'OUTPUT_DIR'}}",
-      "vm_name": "win7x86-pro",
+      "remote_datastore": "{{ user `datastore`}}",
+      "output_directory": "{{user `output_directory`}}",
+      "vm_name": "{{user `vm_name`}}",
       "type": "vmware-iso",
       "skip_compaction": true,
       "guest_os_type": "windows7",
@@ -44,11 +48,11 @@
       "tools_upload_flavor": "windows",
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "{{ user `shutdown_command`}}",
-      "disk_size": 40960,
+      "disk_size": 15360,
       "vmx_data": {
         "ethernet0.networkName": "VM Network",
         "memsize": "2048",
-        "numvcpus": "1",
+        "numvcpus": "2",
         "cpuid.coresPerSocket": "2"
       }
     }
@@ -61,7 +65,8 @@
       "scripts": [     
 
         "custom/boot.cmd",
-        "custom/jenkins-slave.bat"
+        "custom/selenium-slave.bat",
+        "custom/shutdown.bat"
       ]
     },
     {

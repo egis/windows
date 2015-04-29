@@ -1,23 +1,29 @@
 {
   "variables": {
+    "remote_host": "{{env `remote_host`}}",
+    "remote_username": "root",
+    "remote_password": "{{env `remote_password`}}",
+    "vm_name": "{{env `VM_NAME`}}",
+    "datastore": "{{ env `datastore` }}",
+    "output_directory": "{{env `VM_NAME`}}",
     "version": "0.1.0",
-    "cm": "chef",
-    "cm_version": "",
     "iso_url": "/distributions/iso/Win2012.iso",
-    "iso_checksum": "85ffd43548204eb7fa31ab2d607a38cf",  
+    "iso_checksum": "85ffd43548204eb7fa31ab2d607a38cf", 
+
     "update": true,
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c 'Packer Shutdown'"
   },
   "builders": [
     {
       "remote_type": "esx5",
-      "remote_host": "{{env 'ESX_HOST'}}",
+      "remote_host": "{{user `remote_host`}}",
       "remote_username": "root",
-      "remote_password": "{{env 'ESX_PASS'}}",
-      "remote_cache_datastore": "datastore1",
+      "remote_password": "{{user `remote_password`}}",
+      "remote_cache_datastore": "{{ user `datastore`}}",
       "remote_cache_directory": "packer-cache",
-      "output_directory": "win2012r2-standard_{{isotime}}",
-      "vm_name": "win2012r2-standard",
+      "remote_datastore": "{{ user `datastore`}}",
+      "output_directory": "{{user `output_directory`}}",
+      "vm_name": "{{user `vm_name`}}",
       "type": "vmware-iso",
       "skip_compaction": true,
       "guest_os_type": "windows8srv-64",
@@ -42,10 +48,10 @@
       ],
       "tools_upload_flavor": "windows",
       "shutdown_command": "{{ user `shutdown_command`}}",
-      "disk_size": 40960,
+      "disk_size": 20000,
       "vmx_data": {        
         "ethernet0.networkName": "VM Network",
-        "memsize": "1536",
+        "memsize": "2048",
         "numvcpus": "1",
         "cpuid.coresPerSocket": "2",
         "scsi0.virtualDev": "lsisas1068"
@@ -56,16 +62,12 @@
     {
       "type": "shell",
       "remote_path": "/tmp/script.bat",
-      "environment_vars": [
-        "CM={{user `cm`}}",
-        "CM_VERSION={{user `cm_version`}}",
-        "UPDATE={{user `update`}}"
-      ],
       "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
       "scripts": [
        "custom/boot.cmd",
        "custom/server.cmd",  
-       "custom/jenkins-slave.bat"
+       "custom/jenkins-slave.bat",
+       "custom/shutdown.bat"
       ]
     },
     {
