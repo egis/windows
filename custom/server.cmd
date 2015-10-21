@@ -15,4 +15,7 @@ ping -n 10 127.0.0.1 > nul
 msiexec /i  C:\extra\LibreOffice_Win_x86.msi /quiet /qn /norestart 
 copy C:\extra\apache-ant-1.9.4-bin.zip C:\
 
+cd C:\
+"C:\Program Files\7-Zip\7z" x C:\gradle-2.7-bin.zip
 
+setx PATH "%PATH%;C:\gradle-2.7\bin\"

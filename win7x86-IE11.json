@@ -3,9 +3,9 @@
     "version": "0.1.0",
     "cm": "chef",
     "cm_version": "",
-    "iso_url": "/distributions/iso/Win7.iso",
+    "iso_url": "/distributions/iso/Win7IE11-packer.iso",
     "iso_checksum_type": "md5",
-    "iso_checksum": "528845853389df15d0fa36e5d3994c55",
+    "iso_checksum": "de9ed0743581307fbcb5b12e0c54d4f1",
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c 'Packer Shutdown'",
     "update": false
   },
@@ -85,7 +85,7 @@
       "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
       "scripts": [        
         "custom/boot.cmd",
-        "custom/selenium.cmd"
+        "custom/selenium.bat"
       ]
     },
     {

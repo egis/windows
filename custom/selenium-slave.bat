@@ -37,6 +37,7 @@ reg add "%IE%" /f /v "Show_FullURL" /d "yes"
 reg add "%IE%" /f /v "Start Page Redirect Cache" /d "about:blank"
 reg add "%IE%" /f /v "Default_Page_URL" /d "about:blank"
 reg add "%IE%" /f /v "Default_Search_URL" /d "about:blank"
+reg add "HKCU\Software\Microsoft\Internet Explorer\New Windows\" /F /V "PopupMgr" /T REG_SZ /D "no"
 
 reg query "%IE%"
 
@@ -56,6 +57,7 @@ reg add "%IE%" /f /v "Show_FullURL" /d "yes"
 reg add "%IE%" /f /v "Start Page Redirect Cache" /d "about:blank"
 reg add "%IE%" /f /v "Default_Page_URL" /d "about:blank"
 reg add "%IE%" /f /v "Default_Search_URL" /d "about:blank"
+reg add "HKLM\Software\Microsoft\Internet Explorer\New Windows\" /F /V "PopupMgr" /T REG_SZ /D "no"
 reg query "%IE%"
 
 

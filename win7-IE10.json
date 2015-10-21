@@ -13,16 +13,7 @@
     "update": false
   },
   "builders": [
-    {
-      "remote_type": "esx5",
-      "remote_host": "{{user `remote_host`}}",
-      "remote_username": "root",
-      "remote_password": "{{user `remote_password`}}",
-      "remote_cache_datastore": "{{ user `datastore`}}",
-      "remote_cache_directory": "packer-cache",
-      "remote_datastore": "{{ user `datastore`}}",
-      "output_directory": "{{user `output_directory`}}",
-      "vm_name": "{{user `vm_name`}}",
+    {     
       "type": "vmware-iso",
       "skip_compaction": true,
       "guest_os_type": "windows7",
@@ -48,7 +39,7 @@
       "tools_upload_flavor": "windows",
       "ssh_wait_timeout": "10000s",
       "shutdown_command": "{{ user `shutdown_command`}}",
-      "disk_size": 15360,
+      "disk_size": 20000,
       "vmx_data": {
         "ethernet0.networkName": "VM Network",
         "memsize": "2048",
@@ -65,7 +56,7 @@
       "scripts": [     
 
         "custom/boot.cmd",
-        "custom/selenium-slave.bat",
+        "custom/selenium.bat",
         "custom/shutdown.bat"
       ]
     },

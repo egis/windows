@@ -33,4 +33,6 @@ if defined ProgramFiles(x86) (
 	C:\extra\VMware-tools-9.4.10-2068191-i386.exe  /S /v "/qn REBOOT=R ADDLOCAL=ALL"
 )
 
+ C:\extra\ClassicShell.exe /qn ADDLOCAL=ClassicStartMenu   NOSTART=1
+
 

@@ -8,7 +8,7 @@ copy C:\extra\iedriverserver.exe  C:\windows\system32\
 copy C:\extra\chromedriver.exe C:\windows\system32\
 
 copy C:\extra\selenium.bat C:\
-copy C:\extra\selenium-server-standalone-2.44.0.jar C:\
+copy C:\extra\selenium-server-standalone-2.45.0.jar C:\
 REG ADD "HKCU\SOFTWARE\Microsoft\Windows\CurrentVersion\Run" /V "Selenoum" /t REG_SZ /F /D "C:\selenium.bat"
 
 
