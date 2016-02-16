@@ -35,4 +35,7 @@ if defined ProgramFiles(x86) (
 
  C:\extra\ClassicShell.exe /qn ADDLOCAL=ClassicStartMenu   NOSTART=1
 
+ netsh interface portproxy add v4tov4 listenport=8101 listenaddress=0.0.0.0 connectport=8101 connectaddress=172.16.100.1
+ netsh interface portproxy add v4tov4 listenport=8102 listenaddress=0.0.0.0 connectport=8102 connectaddress=172.16.100.1
+
 

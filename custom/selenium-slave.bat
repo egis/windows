@@ -62,5 +62,10 @@ reg query "%IE%"
 
 
 reg add "HKLM\Software\Microsoft\Windows\CurrentVersion\Run" /v "Selenium" /f /d "cmd /c C:\\selenium.bat"
+reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v "DontShowUI" /T REG_DWORD /d 1
+reg add "HKLM\Software\Microsoft\Windows\Windows Error Reporting" /f /v "Disable" /T REG_DWORD /d 1
+reg add "HKCU\Software\Microsoft\Windows\Windows Error Reporting" /f /v "DontShowUI" /T REG_DWORD /d 1
+reg add "HKCU\Software\Microsoft\Windows\Windows Error Reporting" /f /v "Disable" /T REG_DWORD /d 1
+
 
 
