@@ -9,8 +9,6 @@
     "version": "0.1.0",
     "iso_url": "/distributions/iso/Win2012.iso",
     "iso_checksum": "85ffd43548204eb7fa31ab2d607a38cf", 
-
-    "update": true,
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c 'Packer Shutdown'"
   },
   "builders": [
@@ -31,13 +29,14 @@
       "iso_checksum": "{{ user `iso_checksum` }}",
       "iso_checksum_type": "md5",
       "ssh_username": "Administrator",
+      "keep_registered": "true",
       "ssh_password": "password",
       "ssh_wait_timeout": "10000s",
       "floppy_files": [
       "floppy/win2012r2-standard/Autounattend.xml",
       "floppy/00-run-all-scripts.cmd",
       "floppy/install-winrm.cmd",
-       "custom/wget.exe",       
+       "custom/wget.exe",
         "floppy/powerconfig.bat",
         "floppy/01-install-wget.cmd",
         "floppy/_download.cmd",
@@ -49,10 +48,10 @@
       "tools_upload_flavor": "windows",
       "shutdown_command": "{{ user `shutdown_command`}}",
       "disk_size": 20000,
-      "vmx_data": {        
+      "vmx_data": {
         "ethernet0.networkName": "VM Network",
         "memsize": "2048",
-        "numvcpus": "1",
+        "numvcpus": "2",
         "cpuid.coresPerSocket": "2",
         "scsi0.virtualDev": "lsisas1068"
       }

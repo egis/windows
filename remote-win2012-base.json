@@ -1,15 +1,29 @@
 {
   "variables": {
+    "remote_host": "{{env `remote_host`}}",
+    "remote_username": "root",
+    "remote_password": "{{env `remote_password`}}",
+    "vm_name": "{{env `VM_NAME`}}",
+    "datastore": "{{ env `datastore` }}",
+    "output_directory": "{{env `VM_NAME`}}",
     "version": "0.1.0",
     "iso_url": "/distributions/iso/Win2012.iso",
-    "iso_checksum": "85ffd43548204eb7fa31ab2d607a38cf",
+    "iso_checksum": "85ffd43548204eb7fa31ab2d607a38cf", 
     "shutdown_command": "shutdown /s /t 10 /f /d p:4:1 /c 'Packer Shutdown'"
   },
   "builders": [
     {
-      "vm_name": "win2012r2-standard",
+      "remote_type": "esx5",
+      "remote_host": "{{user `remote_host`}}",
+      "remote_username": "root",
+      "remote_password": "{{user `remote_password`}}",
+      "remote_cache_datastore": "{{ user `datastore`}}",
+      "remote_cache_directory": "packer-cache",
+      "remote_datastore": "{{ user `datastore`}}",
+      "output_directory": "{{user `output_directory`}}",
+      "vm_name": "{{user `vm_name`}}",
       "type": "vmware-iso",
-      "skip_compaction": "true",
+      "skip_compaction": true,
       "guest_os_type": "windows8srv-64",
       "iso_url": "{{ user `iso_url` }}",
       "iso_checksum": "{{ user `iso_checksum` }}",
@@ -17,7 +31,6 @@
       "ssh_username": "Administrator",
       "ssh_password": "password",
       "ssh_wait_timeout": "10000s",
-      "http_directory": "../iso/server-extra",
       "floppy_files": [
       "floppy/win2012r2-standard/Autounattend.xml",
       "floppy/00-run-all-scripts.cmd",
@@ -33,10 +46,11 @@
       ],
       "tools_upload_flavor": "windows",
       "shutdown_command": "{{ user `shutdown_command`}}",
-      "disk_size": 40960,
-      "vmx_data": {
-        "memsize": "1536",
-        "numvcpus": "1",
+      "disk_size": 20000,
+      "vmx_data": {        
+        "ethernet0.networkName": "VM Network",
+        "memsize": "2048",
+        "numvcpus": "2",
         "cpuid.coresPerSocket": "2",
         "scsi0.virtualDev": "lsisas1068"
       }
@@ -48,9 +62,7 @@
       "remote_path": "/tmp/script.bat",
       "execute_command": "{{.Vars}} cmd /c C:/Windows/Temp/script.bat",
       "scripts": [
-       "custom/boot.cmd",
-       "custom/server.cmd",
-       "custom/vmwaretools.cmd"
+       "custom/boot.cmd"
       ]
     },
     {
